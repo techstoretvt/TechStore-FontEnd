@@ -1,0 +1,54 @@
+:root {
+    --base-bg-color:
+        linear-gradient(rgb(17, 24, 39), rgb(88, 28, 135), rgb(124, 58, 237));
+    --height-header-home: 70px;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Amiko';
+    font-size: 1.6rem;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+}
+
+.scoll-bar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+}
+
+a {
+    display: block;
+    color: unset;
+    text-decoration: none;
+}
+
+.main-container {
+    background: var(--base-bg-color);
+    // background: url('../assets/image/home/Slide4.jpg');
+    background-size: cover;
+    min-height: 100vh;
+
+}

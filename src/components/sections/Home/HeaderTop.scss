@@ -1,0 +1,31 @@
+.header-top-container {
+
+    .header-top-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // background-color: orange;
+        // backdrop-filter: blur(10px);
+        padding: 5px 10px;
+        color: #fff;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        background-color: rgb(255 255 255 / 8%);
+        box-shadow: 0 0 10px 1px rgb(143 143 143 / 10%);
+
+        .left {
+            font-size: 1.2rem;
+        }
+
+        .right {
+            display: flex;
+            gap: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+
+            a:hover {
+                color: #d1d1ff;
+            }
+        }
+    }
+}
