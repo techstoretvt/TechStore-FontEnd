@@ -1,7 +1,251 @@
 .header-bottom-container {
 
     .header-bottom-content {
-        min-height: 100px;
-        background-color: #263342;
+        // min-height: 100px;
+        background-color: rgba(137, 161, 188, 0.2);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+        .header-logo {
+            width: fit-content;
+            order: 1;
+            padding-right: 50px;
+
+            .header-logo-img {
+                background-image: url('../../../assets/image/logo/logo-full.png');
+                background-size: cover;
+                margin-left: 20px;
+                width: 112px;
+                height: 66px;
+            }
+        }
+
+        .header-search {
+            flex: 1;
+            order: 2;
+            display: flex;
+            align-items: center;
+
+            .header-search-wrap {
+                width: 100%;
+                position: relative;
+
+                .search-input {
+                    position: relative;
+                    display: flex;
+                    background-color: #fff;
+                    padding: 4px;
+                    border-radius: 4px;
+                    align-items: center;
+
+                    input {
+                        padding: 10px 15px;
+                        flex: 1;
+
+                        &:focus~.search-boder {
+                            display: block;
+                        }
+                    }
+
+                    .btn-search {
+                        padding: 10px 25px;
+                        background-color: orange;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 3px;
+                        cursor: pointer;
+
+                        i {
+                            color: #ddd;
+                        }
+                    }
+
+                    .search-boder {
+                        display: none;
+                        position: absolute;
+                        inset: 0;
+                        background-color: transparent;
+                        pointer-events: none;
+                        border: 1px solid orange;
+                    }
+                }
+
+                .search-suggestions {
+                    display: none;
+                    position: absolute;
+                    width: 100%;
+                    min-height: 100px;
+                    background-color: #ccc;
+                }
+            }
+
+        }
+
+        .header-icon {
+            width: fit-content;
+            order: 3;
+            display: flex;
+            align-items: center;
+            padding-left: 50px;
+            padding-right: 10px;
+
+            .header-icon-wrap {
+                display: flex;
+                gap: 10px;
+
+                .icon-cart {
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+                    cursor: pointer;
+                    color: #fff;
+
+                    &:hover {
+                        color: orange;
+
+                        .right {
+                            color: orange;
+                        }
+                    }
+
+                    .left {
+                        position: relative;
+
+                        i {
+                            font-size: 20px;
+                        }
+
+                        div {
+                            position: absolute;
+                            top: -14px;
+                            right: -14px;
+                            background-color: red;
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                            line-height: 27px;
+                            text-align: center;
+                        }
+                    }
+
+                    .right {
+                        color: #fff;
+                        font-size: 1.5rem;
+                    }
+                }
+
+                .header-icon-separate {
+                    width: 1px;
+                    background-color: #ccc;
+                    padding: 16px 0;
+
+                    &.separate-2 {
+                        display: none;
+                    }
+                }
+
+                .icon-account {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    cursor: pointer;
+                    color: #fff;
+
+                    &:hover {
+                        color: orange;
+
+                        div {
+                            color: orange;
+                        }
+                    }
+
+                    i {
+                        font-size: 20px;
+                    }
+
+                    div {
+
+                        margin-top: 4px;
+                        font-size: 1.5rem;
+                    }
+                }
+
+                .icon-menu {
+                    display: none;
+                    gap: 10px;
+                    align-items: center;
+                    cursor: pointer;
+                    color: #fff;
+
+                    &:hover {
+                        color: orange;
+
+                        div {
+                            color: orange;
+                        }
+                    }
+
+                    i {
+                        font-size: 20px;
+                    }
+
+                    div {
+
+                        margin-top: 4px;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .header-bottom-container {
+        .header-search {
+            flex: unset !important;
+            order: 4 !important;
+            width: 100% !important;
+            margin: 0px 10px 10px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .header-bottom-container {
+        .header-icon {
+            .icon-cart {
+                .right {
+                    display: none !important;
+                }
+
+                .left {
+                    margin-right: 14px !important;
+                }
+            }
+
+            .header-icon-separate {
+                display: none !important;
+            }
+        }
+
+        .icon-account {
+            display: none !important;
+        }
+
+        .header-logo {
+            .header-logo-img {
+                background-image: url('../../../assets/image/logo/logo-icon.png') !important;
+                width: 50px !important;
+                height: 50px !important;
+            }
+        }
+
+        .icon-menu {
+            display: flex !important;
+        }
     }
 }

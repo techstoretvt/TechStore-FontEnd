@@ -1,0 +1,45 @@
+.ExhibitionImage-container {
+    .ExhibitionImage-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+        aspect-ratio: 8/1;
+        padding: 10px;
+
+        .ExhibitionImage-item {
+            flex: 1;
+            background-color: aqua;
+            background-size: cover;
+
+            &.img-1 {
+                background-image: url('../../../assets/image/home/ExhibitionImage-1.webp');
+            }
+
+            &.img-2 {
+                background-image: url('../../../assets/image/home/ExhibitionImage-2.webp');
+            }
+
+            &.img-3 {
+                background-image: url('../../../assets/image/home/ExhibitionImage-3.webp');
+            }
+
+            &.img-4 {
+                background-image: url('../../../assets/image/home/ExhibitionImage-4.webp');
+            }
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .ExhibitionImage-container {
+        .ExhibitionImage-content {
+            aspect-ratio: 2/1 !important;
+
+            .ExhibitionImage-item {
+                flex: unset !important;
+                width: calc(50% - 10px);
+            }
+        }
+    }
+}

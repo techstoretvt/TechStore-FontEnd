@@ -29,3 +29,9 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+    .header-top-container {
+        display: none;
+    }
+}

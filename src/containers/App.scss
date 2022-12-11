@@ -1,6 +1,13 @@
+$fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
+
+
 :root {
-    --base-bg-color:
-        linear-gradient(rgb(17, 24, 39), rgb(88, 28, 135), rgb(124, 58, 237));
+    // --base-bg-color: linear-gradient(rgb(174 188 255), rgb(255 0 0), rgb(62 185 219));
+    --base-bg-color: linear-gradient(rgb(17, 24, 39), rgb(88, 28, 135), rgb(124, 58, 237));
     --height-header-home: 70px;
 }
 
@@ -43,6 +50,11 @@ a {
     display: block;
     color: unset;
     text-decoration: none;
+}
+
+input {
+    outline: none;
+    border: none;
 }
 
 .main-container {

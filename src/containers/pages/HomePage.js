@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import HeaderTop from "../../components/sections/Home/HeaderTop";
-import HeaderBottom from "../../components/sections/Home/HeaderBottom";
+import ExhibitionImage from "../../components/sections/Home/Exhibition-image";
+import HeaderHome from "../../components/sections/Home/HeaderHome";
+import SliderImageHome from "../../components/sections/Home/SliderImageHome";
 
 const HomePage = () => {
 
@@ -10,8 +11,9 @@ const HomePage = () => {
 
     return (
         <div className="homePage-container">
-            <HeaderTop />
-            <HeaderBottom />
+            <HeaderHome isTop={true} />
+            <SliderImageHome />
+            <ExhibitionImage />
         </div>
     )
 }
