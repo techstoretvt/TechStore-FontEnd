@@ -1,0 +1,104 @@
+.CardProduct-container {
+    .CardProduct-content {
+        background-color: rgba(255, 255, 255, 1);
+        margin: 0px 10px;
+        border-radius: 6px;
+
+        .CardProduct-imgs {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 6px;
+
+            &:hover {
+                .imgs-wrap {
+                    transform: translateX(-100%);
+                }
+            }
+
+            .imgs-wrap {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                transition: .3s linear;
+                // overflow: hidden;
+
+                .img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    background-size: cover;
+
+                    &.img-1 {
+                        background-image: url('https://product.hstatic.net/200000516791/product/_38680082-6684-4dfe-bbdc-c1a019aa2f55_287fed8bf90a45a4b55c6ca020e8fed4_a34d64881dcf49e7958c59115be35b94_master.jpg');
+
+                    }
+
+                    &.img-2 {
+                        background-image: url('https://product.hstatic.net/200000516791/product/_38680082-6684-4dfe-bbdc-c1a019aa2f55_287fed8bf90a45a4b55c6ca020e8fed4_a34d64881dcf49e7958c59115be35b94_master.jpg');
+                        border-left: 3px solid #ccc;
+
+                    }
+                }
+            }
+
+
+
+        }
+
+        .CardProduct-bottom {
+            padding: 10px;
+
+            .trademark {
+                font-size: 1.3rem;
+                color: var(--text-color-white);
+                padding: 4px 0;
+            }
+
+            .name {
+                font-size: 1.45rem;
+                height: 36px;
+                line-height: 18px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+
+            }
+
+            .price-promotion {
+                margin-top: 16px;
+                font-size: 1.4rem;
+                height: 16px;
+                line-height: 16px;
+                color: red;
+                font-weight: bold;
+            }
+
+            .price {
+                margin-top: 6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .price-number {
+                    font-size: 1.4rem;
+                    text-decoration: line-through;
+
+                    &.active {
+                        text-decoration: none;
+                        font-weight: bold;
+                        color: red;
+                    }
+                }
+
+                .price-number-promotion {
+                    background-color: red;
+                    padding: 4px;
+                    color: #fff;
+                    font-size: 1.3rem;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+}

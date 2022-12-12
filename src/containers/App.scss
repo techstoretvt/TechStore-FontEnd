@@ -9,6 +9,9 @@ $fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
     // --base-bg-color: linear-gradient(rgb(174 188 255), rgb(255 0 0), rgb(62 185 219));
     --base-bg-color: linear-gradient(rgb(17, 24, 39), rgb(88, 28, 135), rgb(124, 58, 237));
     --height-header-home: 70px;
+    --background-white: #ddd;
+    --text-color-black: #737373;
+    --text-color-white: #d2d2d2;
 }
 
 * {
@@ -35,6 +38,7 @@ body {
     }
 }
 
+//Custom scollbar
 .scoll-bar {
     &::-webkit-scrollbar {
         width: 6px;
@@ -55,6 +59,12 @@ a {
 input {
     outline: none;
     border: none;
+
+    &::placeholder {
+        color: var(--text-color-black);
+        font-family: 'Amiko';
+        font-size: 1.5rem;
+    }
 }
 
 .main-container {
@@ -63,4 +73,52 @@ input {
     background-size: cover;
     min-height: 100vh;
 
+}
+
+//Hiệu ứng tráng gương
+.light-effect {
+    position: relative;
+    overflow: hidden;
+
+    &.light-effect-flash::after {
+        transition: .15s linear;
+    }
+
+    &.light-effect-slow::after {
+        transition: .25s linear;
+        border: none;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 1100px;
+        background-color: rgba(255, 255, 255, .3);
+        transform: rotate(45deg) translateX(0);
+        top: -640px;
+        left: 0;
+
+
+    }
+
+    &:hover::after {
+        transform: rotate(45deg) translateX(740px);
+    }
+}
+
+//Nền cho ảnh
+.background-primary {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(17, 24, 39, .1), rgba(88, 28, 135, .1), rgba(124, 58, 237, .1));
+        pointer-events: none;
+        // background-color: aqua;
+        z-index: 1000;
+
+    }
 }

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 const SliderImageHome = () => {
     const settings = {
+        dots: true,
         infinite: true,
         speed: 500,
         lazyLoad: 'ondemand',
@@ -23,9 +24,9 @@ const SliderImageHome = () => {
     return (
         <div className='slider-image-container'>
             <div className='slider-image-content'>
-                <div className='slider-image-left'>
+                <Link to={'/'} className='background-primary slider-image-left light-effect light-effect-flash'>
 
-                </div>
+                </Link>
                 <div className='slider-image-right'>
                     <div className='top'>
                         <div className='item'>
@@ -48,7 +49,7 @@ const SliderImageHome = () => {
                         </div>
                     </div>
                     <div className='bottom'>
-                        <div className='bottom-left'>
+                        <div className='bottom-left background-primary'>
                             <Slider {...settings}>
                                 <Link to={'/'} className="slider-item">
                                     <img alt="" src={slide1} />
@@ -63,17 +64,17 @@ const SliderImageHome = () => {
                         </div>
                         <div className='bottom-right'>
                             <div className='pc'>
-                                <Link to={'/'} className='pc-img img-1'>
+                                <Link to={'/'} className='pc-img img-1 light-effect light-effect-slow background-primary'>
 
                                 </Link >
-                                <Link to={'/'} className='pc-img img-2'>
+                                <Link to={'/'} className='pc-img img-2 light-effect light-effect-slow background-primary'>
 
                                 </Link >
-                                <Link to={'/'} className='pc-img img-3'>
+                                <Link to={'/'} className='pc-img img-3 light-effect light-effect-slow background-primary'>
 
                                 </Link >
                             </div>
-                            <div className='tablet'>
+                            <div className='tablet background-primary'>
                                 <Slider>
                                     <Link to={'/'} className="slider-item">
                                         <img alt="" src={slide4} />

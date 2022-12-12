@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { path } from '../utils/constant'
 import './App.scss'
@@ -12,6 +12,11 @@ function App() {
     <div className="main-container">
       <Routes>
         <Route path={path.homePage} element={<HomePage />} />
+
+
+
+        {/* default */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );

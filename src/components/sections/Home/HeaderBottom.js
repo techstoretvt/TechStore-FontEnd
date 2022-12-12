@@ -29,7 +29,8 @@ const HeaderBottom = () => {
                     <div className='header-icon-wrap'>
                         <div className='icon-cart'>
                             <div className='left'>
-                                <i className="fa-solid fa-cart-shopping"></i>
+                                {/* <i className="fa-solid fa-cart-shopping"></i> */}
+                                <span></span>
                                 <div>0</div>
                             </div>
 
@@ -39,7 +40,7 @@ const HeaderBottom = () => {
                         </div>
                         <div className='header-icon-separate'></div>
                         <div className='icon-account'>
-                            <i className="fa-regular fa-user"></i>
+                            <span></span>
                             <div>Đăng nhập</div>
                         </div>
                         <div className='icon-menu'>

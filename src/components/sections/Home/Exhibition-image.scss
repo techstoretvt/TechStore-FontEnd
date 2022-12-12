@@ -10,22 +10,45 @@
         .ExhibitionImage-item {
             flex: 1;
             background-color: aqua;
-            background-size: cover;
+            cursor: pointer;
+            overflow: hidden;
+
+
+            &:hover {
+                div {
+                    transform: scale(1.1);
+                }
+            }
+
+            div {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                transition: all .3s linear;
+            }
 
             &.img-1 {
-                background-image: url('../../../assets/image/home/ExhibitionImage-1.webp');
+                div {
+                    background-image: url('../../../assets/image/home/ExhibitionImage-1.webp');
+                }
             }
 
             &.img-2 {
-                background-image: url('../../../assets/image/home/ExhibitionImage-2.webp');
+                div {
+                    background-image: url('../../../assets/image/home/ExhibitionImage-2.webp');
+                }
             }
 
             &.img-3 {
-                background-image: url('../../../assets/image/home/ExhibitionImage-3.webp');
+                div {
+                    background-image: url('../../../assets/image/home/ExhibitionImage-3.webp');
+                }
             }
 
             &.img-4 {
-                background-image: url('../../../assets/image/home/ExhibitionImage-4.webp');
+                div {
+                    background-image: url('../../../assets/image/home/ExhibitionImage-4.webp');
+                }
             }
         }
     }

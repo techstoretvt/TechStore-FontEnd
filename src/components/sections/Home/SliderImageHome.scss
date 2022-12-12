@@ -28,7 +28,7 @@
                 align-items: center;
                 gap: 16px;
                 height: 40px;
-                background-color: #fff;
+                background-color: var(--background-white);
                 padding: 0px 10px;
 
                 .item {
@@ -55,7 +55,7 @@
                     }
 
                     .item-text {
-                        color: #737373;
+                        color: var(--text-color-black);
                     }
                 }
             }
@@ -151,6 +151,17 @@
                             color: #000 !important;
                         }
                     }
+                }
+            }
+
+            .slick-dots {
+                top: 90% !important;
+
+                li {
+                    button::before {
+                        font-size: 13px !important;
+                    }
+
                 }
             }
         }

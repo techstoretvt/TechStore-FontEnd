@@ -35,7 +35,7 @@
                 .search-input {
                     position: relative;
                     display: flex;
-                    background-color: #fff;
+                    background-color: var(--background-white);
                     padding: 4px;
                     border-radius: 4px;
                     align-items: center;
@@ -43,6 +43,7 @@
                     input {
                         padding: 10px 15px;
                         flex: 1;
+                        background-color: var(--background-white);
 
                         &:focus~.search-boder {
                             display: block;
@@ -113,14 +114,20 @@
                     .left {
                         position: relative;
 
-                        i {
-                            font-size: 20px;
+                        // i {
+                        //     font-size: 20px;
+                        // }
+                        span {
+                            display: block;
+                            width: 32px;
+                            height: 32px;
+                            background-image: url('../../../assets/image/home/icon-cart.gif');
                         }
 
                         div {
                             position: absolute;
-                            top: -14px;
-                            right: -14px;
+                            top: -10px;
+                            right: -12px;
                             background-color: red;
                             border-radius: 50%;
                             width: 24px;
@@ -131,7 +138,7 @@
                     }
 
                     .right {
-                        color: #fff;
+                        color: var(--text-color-white);
                         font-size: 1.5rem;
                     }
                 }
@@ -161,12 +168,18 @@
                         }
                     }
 
-                    i {
-                        font-size: 20px;
+                    // i {
+                    //     font-size: 20px;
+                    // }
+                    span {
+                        display: block;
+                        width: 32px;
+                        height: 32px;
+                        background-image: url('../../../assets/image/home/icon-user.gif');
                     }
 
                     div {
-
+                        color: var(--text-color-white);
                         margin-top: 4px;
                         font-size: 1.5rem;
                     }

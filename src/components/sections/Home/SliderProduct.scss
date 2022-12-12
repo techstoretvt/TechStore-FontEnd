@@ -1,0 +1,27 @@
+.SliderProduct-container {
+    .SliderProduct-content {
+        padding-top: 10px;
+
+        .slick-prev,
+        .slick-next {
+            top: -40px !important;
+        }
+
+        .slick-prev {
+            left: unset !important;
+            right: 80px !important;
+            z-index: 2 !important;
+        }
+
+        .slick-next {
+            right: 40px !important;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            font-size: 31px !important;
+            // opacity: 1 !important;
+            color: #fff !important;
+        }
+    }
+}
