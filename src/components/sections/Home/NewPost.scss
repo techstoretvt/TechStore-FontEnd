@@ -1,0 +1,217 @@
+.NewPost-container {
+    .NewPost-content {
+        min-height: 300px;
+        margin: 40px 10px 10px;
+        display: flex;
+        background-color: rgba(255, 255, 255, .1);
+        padding: 50px 10px;
+        border-radius: 10px;
+
+        .NewPost-main {
+            flex: 1;
+            min-height: 200px;
+            background-color: rgba(255, 255, 255, .2);
+            border-radius: 6px;
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+
+                .title {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: #fff;
+                }
+
+                .more {
+                    color: #fff;
+                    font-size: 1.4rem;
+                    position: relative;
+                    height: fit-content;
+                    margin-right: 20px;
+
+                    &:hover {
+                        opacity: .6;
+                    }
+
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        top: -2px;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        border-right: 2px solid #fff;
+                        border-bottom: 2px solid #fff;
+                        transform: rotate(-45deg) scale(.4);
+                    }
+                }
+
+            }
+
+            .content {
+                display: flex;
+                flex-wrap: wrap;
+
+                .content-left {
+                    width: 50%;
+                    min-height: 200px;
+                    padding: 10px;
+
+                    &:hover {
+                        .image {
+                            div {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+
+                    .image {
+                        width: 100%;
+                        aspect-ratio: 2/1;
+                        overflow: hidden;
+                        border-radius: 8px;
+
+                        div {
+                            width: 100%;
+                            height: 100%;
+                            background-size: cover;
+                            background-image: url('https://file.hstatic.net/200000516791/article/blog-1_dada356961874f0c96886ae333655aac.jpg');
+                            border-radius: 8px;
+                            transition: .3s linear;
+                        }
+                    }
+
+                    .name {
+                        margin-top: 14px;
+                        font-weight: bold;
+                        font-size: 1.8rem;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                        line-height: 20px;
+                        max-height: 40px;
+                        color: #fff;
+
+                        &:hover {
+                            opacity: .7;
+                        }
+                    }
+
+                    .time {
+                        font-size: 1.2rem;
+                        color: #fff;
+                        margin-top: 10px;
+                    }
+                }
+
+                .content-right {
+                    width: 50%;
+                    padding: 10px;
+
+                    .content-right-wrap {
+                        display: flex;
+                        gap: 8px;
+                        margin-bottom: 10px;
+
+                        &:hover {
+                            .image {
+                                div {
+                                    transform: scale(1.1);
+                                }
+                            }
+                        }
+
+                        .image {
+                            width: 130px;
+                            height: 73px;
+                            border-radius: 8px;
+                            overflow: hidden;
+
+                            div {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 8px;
+                                background-size: cover;
+                                background-image: url('https://file.hstatic.net/200000516791/article/blog-1_dada356961874f0c96886ae333655aac.jpg');
+                                transition: .3s linear;
+                            }
+
+                        }
+
+                        .content {
+                            flex: 1;
+                            margin-top: 4px;
+
+                            .name {
+                                font-size: 1.6rem;
+                                line-height: 18px;
+                                height: 36px;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                overflow: hidden;
+                                color: #fff;
+
+                                &:hover {
+                                    opacity: .7;
+                                }
+                            }
+
+                            .time {
+                                font-size: 1.2rem;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .NewPost-img {
+            width: 25%;
+            margin: 0 0px 0 10px;
+            border-radius: 4px;
+            overflow: hidden;
+
+            &:hover {
+                div {
+                    transform: scale(1.1);
+                }
+            }
+
+            div {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-image: url('../../../assets/image/home/NewPostImage-right.webp');
+                border-radius: 4px;
+                transition: .3s linear;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .NewPost-container {
+        .NewPost-content {
+            .NewPost-img {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .NewPost-container {
+        .NewPost-content {
+
+            .content-left,
+            .content-right {
+                width: 100% !important;
+            }
+        }
+    }
+}

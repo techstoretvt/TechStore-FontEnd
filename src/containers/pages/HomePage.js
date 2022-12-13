@@ -8,6 +8,11 @@ import TopSellingProduct from "../../components/sections/Home/TopSellingProduct"
 import ExhibitionImage2 from "../../components/sections/Home/Exhibition-image-2";
 import NewCollection from "../../components/sections/Home/NewCollection";
 import ExhibitionImage3 from "../../components/sections/Home/Exhibition-image-3";
+import AdvanceProduct from "../../components/sections/Home/AdvanceProduct";
+import GenuineFlycam from "../../components/sections/Home/GenuineFlycam";
+import NewPost from "../../components/sections/Home/NewPost";
+import TopSearch from "../../components/sections/Home/TopSearch";
+import FooterHome from "../../components/sections/Home/FooterHome";
 
 const HomePage = () => {
 
@@ -26,8 +31,11 @@ const HomePage = () => {
             <ExhibitionImage2 />
             <NewCollection />
             <ExhibitionImage3 />
-
-            <div style={{ height: "500px" }}></div>
+            <AdvanceProduct />
+            <GenuineFlycam />
+            <NewPost />
+            <TopSearch />
+            <FooterHome />
         </div>
     )
 }

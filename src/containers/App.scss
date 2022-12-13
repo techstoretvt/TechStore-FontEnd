@@ -1,8 +1,8 @@
-$fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
+// $fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
+// @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
+// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
+// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
+// @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
 
 
 :root {
@@ -115,7 +115,7 @@ input {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(rgba(17, 24, 39, .1), rgba(88, 28, 135, .1), rgba(124, 58, 237, .1));
+        background: linear-gradient(rgba(17, 24, 39, .05), rgba(88, 28, 135, .05), rgba(124, 58, 237, .05));
         pointer-events: none;
         // background-color: aqua;
         z-index: 1000;

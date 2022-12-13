@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+    "react-scroll-to-top": "^3.0.0",
     "react-search-autocomplete": "^8.2.1",
     "react-slick": "^0.29.0",
     "reactstrap": "^9.1.5",
