@@ -1,0 +1,13 @@
+.HeaderLogin-container {
+    .HeaderLogin-content {
+        background-color: rgba(255, 255, 255, .15);
+        padding: 0 10px;
+
+        .HeaderLogin-logo {
+            width: 100px;
+            height: 60px;
+            background-size: cover;
+            background-image: url('../../../assets/image/logo/logo-full.png');
+        }
+    }
+}

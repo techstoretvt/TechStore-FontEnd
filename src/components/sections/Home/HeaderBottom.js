@@ -40,8 +40,10 @@ const HeaderBottom = () => {
                         </div>
                         <div className='header-icon-separate'></div>
                         <div className='icon-account'>
-                            <span></span>
-                            <div>Đăng nhập</div>
+                            <Link to={'/account/login'} className="no-login">
+                                <span></span>
+                                <div className='text'>Đăng nhập</div>
+                            </Link>
                         </div>
                         <div className='icon-menu'>
                             <i className="fa-solid fa-bars"></i>

@@ -1,0 +1,330 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito", sans-serif;
+}
+
+body {
+    background: #1f1f47
+}
+
+.container {
+    min-height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(180deg,
+            rgba(47, 184, 255, 0.42) 31.77%,
+            #5c9df1 100%);
+    mix-blend-mode: color-dodge;
+    -webkit-animation: move 25s infinite alternate;
+    animation: move 25s infinite alternate;
+    transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+}
+
+.blob:hover {
+    width: 520px;
+    height: 520px;
+    -webkit-filter: blur(30px);
+    filter: blur(30px);
+    box-shadow:
+        inset 0 0 0 5px rgba(255, 255, 255, 0.6),
+        inset 100px 100px 0 0px #fa709a,
+        inset 200px 200px 0 0px #784ba8,
+        inset 300px 300px 0 0px #2b86c5;
+}
+
+@-webkit-keyframes move {
+    from {
+        transform: translate(-100px, -50px) rotate(-90deg);
+        border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+    }
+
+    to {
+        transform: translate(500px, 100px) rotate(-10deg);
+        border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+    }
+}
+
+@keyframes move {
+    from {
+        transform: translate(-100px, -50px) rotate(-90deg);
+        border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+    }
+
+    to {
+        transform: translate(500px, 100px) rotate(-10deg);
+        border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+.login-box {
+    // position: absolute;
+    // top: 10px;
+    // left: 50%;
+    width: 400px;
+    padding: 40px;
+    // transform: translate(-50%, 0%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    z-index: 10;
+    margin: 20px auto 0;
+    height: fit-content;
+
+
+
+    .login-box-mess {
+        color: red;
+        margin-bottom: 20px;
+        font-size: 15px;
+        height: 17px;
+    }
+
+    .forgot-pass {
+        color: #fff;
+        text-align: end;
+        font-size: 15px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    .or {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+
+        div:nth-child(1),
+        div:nth-child(3) {
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+
+        div:nth-child(2) {
+            color: #fff;
+            font-size: 13px;
+            margin: 0 12px;
+        }
+    }
+
+    .google {
+        display: flex;
+        gap: 10px;
+        color: #fff;
+        // border: 1px solid #fff;
+        padding: 10px 0px;
+        margin-top: 20px;
+        cursor: pointer;
+
+        button {
+            width: 100%;
+        }
+    }
+}
+
+.login-box h2 {
+    margin: 0 0 10px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+    // background-color: #5c9df1;
+
+    &:nth-child(1) {
+        margin-bottom: 20px;
+    }
+
+
+
+    span {
+        position: absolute;
+        width: 100%;
+        top: calc(100% - 20px);
+        left: 0;
+        color: red;
+        font-size: 10px;
+    }
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 10px;
+    letter-spacing: 4px
+}
+
+.login-box a:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+.login-box a span {
+    position: absolute;
+    display: block;
+}
+
+.login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
