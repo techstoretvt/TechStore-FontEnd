@@ -73,7 +73,9 @@ body {
 
 
 
-
+.css-lzr3bi-LoadingOverlayWrapperBase {
+    position: fixed !important;
+}
 
 
 
@@ -157,6 +159,24 @@ body {
             width: 100%;
         }
     }
+
+
+    .redirect-to-register {
+        text-align: end;
+
+        a {
+            padding: 0px;
+            color: orange;
+            font-size: 11px;
+
+            &:hover {
+                background: none;
+                color: orange;
+                border-radius: 5px;
+                box-shadow: none;
+            }
+        }
+    }
 }
 
 .login-box h2 {
@@ -170,8 +190,44 @@ body {
     position: relative;
     // background-color: #5c9df1;
 
+    &.errValid {
+        label {
+            color: red;
+        }
+
+        input {
+            border-bottom-color: red;
+        }
+
+        input:focus~label,
+        input:valid~label {
+            color: red;
+        }
+    }
+
     &:nth-child(1) {
         margin-bottom: 20px;
+
+        a {
+            color: rgb(255, 104, 104);
+            position: absolute;
+            top: -10px;
+            right: 0;
+            font-size: 1.0rem !important;
+            cursor: pointer;
+            padding: 4px 0;
+
+
+
+            &:hover {
+                opacity: .7;
+
+                background: none;
+                color: rgb(255, 104, 104);
+                border-radius: none;
+                box-shadow: none;
+            }
+        }
     }
 
 

@@ -4,21 +4,21 @@ import './CardProduct.scss'
 const CardProduct = () => {
     return (
         <div className='CardProduct-container'>
-            <Link to={'/'} className='CardProduct-content'>
+            <div className='CardProduct-content'>
                 <div className='CardProduct-imgs'>
-                    <div className='imgs-wrap'>
+                    <Link to={'/'} className='imgs-wrap'>
                         <div className='img img-1'></div>
                         <div className='img img-2'></div>
-                    </div>
+                    </Link>
                 </div>
                 <div className='CardProduct-bottom'>
                     <div className='trademark'>
                         Apple
                     </div>
-                    <div className='name' title='Đồng hồ thông minh smartwatch DZ09'>
+                    <Link to={'/'} className='name' title='Đồng hồ thông minh smartwatch DZ09'>
                         Đồng hồ thông minh smartwatch DZ09
                         Đồng hồ thông minh smartwatch DZ09
-                    </div>
+                    </Link>
                     <div className='price-promotion'>
                         980,000₫
                     </div>
@@ -31,7 +31,7 @@ const CardProduct = () => {
                         </div>
                     </div>
                 </div>
-            </Link>
+            </div>
         </div>
     )
 }

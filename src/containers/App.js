@@ -7,8 +7,8 @@ import ScrollToTop from "react-scroll-to-top";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-
-
+import RegisterPage from "./pages/RegisterPage";
+import VerifyForm from "../components/sections/VerifyRegister/VerifyForm";
 
 function App() {
 
@@ -17,8 +17,10 @@ function App() {
       <Routes>
         <Route path={path.homePage} element={<HomePage />} />
         <Route path={path.login} element={<LoginPage />} />
+        <Route path={path.register} element={<RegisterPage />} />
 
 
+        <Route path={path.veryfyRegister} element={<VerifyForm />} />
 
         {/* default */}
         <Route path="*" element={<Navigate to="/" />} />

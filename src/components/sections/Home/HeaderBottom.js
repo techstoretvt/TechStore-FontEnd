@@ -2,7 +2,11 @@
 import { Link } from 'react-router-dom'
 import './HeaderBottom.scss'
 
+import { useSelector } from "react-redux";
+
 const HeaderBottom = () => {
+    const currentUser = useSelector(state => state.user.currentUser)
+
     return (
         <div className='header-bottom-container'>
             <div className='header-bottom-content'>
@@ -42,7 +46,7 @@ const HeaderBottom = () => {
                         <div className='icon-account'>
                             <Link to={'/account/login'} className="no-login">
                                 <span></span>
-                                <div className='text'>Đăng nhập</div>
+                                <div className='text'>{currentUser?.firstName}</div>
                             </Link>
                         </div>
                         <div className='icon-menu'>
