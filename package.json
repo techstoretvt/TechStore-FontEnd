@@ -1,5 +1,5 @@
 {
-  "name": "sdfsdfsdf",
+  "name": "techstore-fontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,14 +8,16 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
+    "bootstrap": "^5.2.3",
     "classnames": "^2.3.2",
+    "dotenv": "^16.0.3",
     "email-validator": "^2.0.4",
     "jwt-decode": "^3.1.2",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",
-    "react-google-login": "^5.2.2",
+    "react-google-recaptcha": "^2.1.0",
     "react-loading": "^2.0.3",
     "react-loading-overlay-ts": "^2.0.0",
     "react-redux": "^8.0.5",
@@ -29,6 +31,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.56.2",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.5.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

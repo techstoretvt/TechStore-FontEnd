@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
 import './FormLogin.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import validator from 'email-validator'
 import classNames from 'classnames';
 import { UserLogin } from '../../../services/userService'
@@ -21,14 +20,17 @@ const FormLogin = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const responseGoogle = (response) => {
-        // console.log(response);
-    }
+    useEffect(() => {
+
+    }, [])
+
 
     const handleSubmitLogin = async () => {
-        setIsOpenLoading(true);
+        console.log('submit login');
+
         var check = checkValueInput();
         if (check) {
+            setIsOpenLoading(!isOpenLoading);
             let res = await UserLogin({
                 email,
                 pass
@@ -46,9 +48,7 @@ const FormLogin = (props) => {
                 updateTokensFaild(dispatch)
                 setErrMess('Đã có lỗi xảy ra, vui lòng thử lại sau!')
             }
-            setTimeout(() => {
-                setIsOpenLoading(false)
-            }, 0);
+            setIsOpenLoading(false)
         }
         else {
             setIsOpenLoading(false)
@@ -86,6 +86,7 @@ const FormLogin = (props) => {
 
     const handleEnter = (event) => {
         if (event.keyCode === 13) {
+            event.target.blur();
             handleSubmitLogin();
         }
     }
@@ -106,7 +107,7 @@ const FormLogin = (props) => {
                             </div>
                             <form>
                                 <div className='redirect-to-register'>
-                                    <Link to={'/account/register'}>Đăng ký</Link>
+                                    <a href={'/account/register'}>Đăng ký</a>
                                 </div>
                                 <div className={classNames("user-box", { errValid: !!errMessEmail })}>
                                     <input onKeyDown={(event) => handleEnter(event)} value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="" required />
@@ -140,13 +141,7 @@ const FormLogin = (props) => {
                                 </div>
 
                                 <div className='google'>
-                                    <GoogleLogin
-                                        clientId="723996790296-8e3q74qs2t80ht3dlfvnqvaufh3hcuun.apps.googleusercontent.com"
-                                        buttonText="Đăng nhập với google"
-                                        onSuccess={responseGoogle}
-                                        onFailure={responseGoogle}
-                                        cookiePolicy={'single_host_origin'}
-                                    />
+
 
                                 </div>
 

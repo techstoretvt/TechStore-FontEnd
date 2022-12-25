@@ -1,16 +1,17 @@
 .AdvanceProduct-container {
     .AdvanceProduct-content {
         min-height: 300px;
-        background-color: rgba(255, 255, 255, .3);
+        // background-color: rgba(255, 255, 255, .3);
         border-radius: 10px;
-        margin: 30px 10px 10px;
+        margin: 40px 10px 10px;
         padding-bottom: 20px;
 
         .AdvanceProduct-top {
-            padding: 20px 10px;
+            padding: 20px 10px 0;
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
+            text-transform: uppercase;
         }
 
         .AdvanceProduct-bottom {
@@ -19,6 +20,7 @@
                 flex-wrap: wrap;
                 gap: 10px;
                 padding: 0 10px 20px;
+                justify-content: flex-end;
 
                 .category {
                     padding: 10px 20px;

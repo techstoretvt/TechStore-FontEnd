@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import validator from 'email-validator'
 import { useDispatch } from "react-redux";
 import ReactLoading from 'react-loading';
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 import './FormRegister.scss'
@@ -11,8 +12,16 @@ import { updateTokensSuccess, updateTokensFaild } from '../../../store/actions/u
 import { CreateUser } from '../../../services/userService'
 
 
+var io = require('socket.io-client');
+var socket
+
+
+const sitekey_capcha = '6LddcqYjAAAAAIjN3PHGSUazDdVW16IQ2Gj9SaWF'
+
+
 const FormRegister = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [lastName, setLastName] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -21,9 +30,29 @@ const FormRegister = () => {
     const [rePassword, setRePassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isOpenModal, setIsOpenModel] = useState(false);
+    const [isCapcha, setIsCapcha] = useState(null);
 
     const [errMess, setErrMess] = useState('');
     const [isEmptyInput, setIsEmptyInput] = useState([false, false, false, false, false])
+
+    //websocket
+    useEffect(() => {
+        socket = io.connect(`${process.env.REACT_APP_BACKEND_URL}`, { reconnect: true });
+
+        // Add a connect listener
+        socket.on('connect', function (socket) {
+            console.log('Connected!');
+        });
+        socket.on('disconnect', function (socket) {
+            console.log('Disconnected!');
+        });
+        // socket.emit('CH01', 'me', 'test msg');
+
+        return () => {
+            socket.off('connect');
+            socket.off('pong');
+        }
+    }, [])
 
     const handleSubmit = async () => {
         setIsLoading(true)
@@ -74,6 +103,10 @@ const FormRegister = () => {
                 copyArr[4] = true;
 
             }
+            else if (!isCapcha) {
+                errmess = 'Vui lòng xác thực bạn không phải người máy!'
+                setIsCapcha(false)
+            }
 
             else {
                 // Call api
@@ -86,9 +119,14 @@ const FormRegister = () => {
 
                 let res = await CreateUser(data);
                 if (res && res.errCode === 0) {
-
                     updateTokensSuccess(res.data, dispatch);
+
+                    socket.on(`email-verify-${res.data.keyVerify}`, function (data) {
+                        console.log('emit success');
+                        navigate('/')
+                    })
                     setIsOpenModel(true)
+
                 }
 
                 else if (res && res.errCode === 2) {
@@ -112,6 +150,11 @@ const FormRegister = () => {
         if (event.keyCode === 13) {
             handleSubmit();
         }
+    }
+
+    function onChangeCapcha(value) {
+        console.log("Captcha value:", value);
+        setIsCapcha(true)
     }
 
     return (
@@ -147,6 +190,17 @@ const FormRegister = () => {
                                 <input onKeyDown={(event) => handleEnter(event)} id='repassword' onChange={(event) => setRePassword(event.target.value)} value={rePassword} type='password' required />
                                 <label htmlFor='repassword'>Nhập lại mật khẩu</label>
                             </div>
+                            <div className={classNames('recapcha', { active: isCapcha === false })}>
+                                <ReCAPTCHA
+                                    sitekey={sitekey_capcha}
+                                    onChange={onChangeCapcha}
+                                    theme='dark'
+                                    // hl='tr'
+                                    size='normal'
+                                    onError={(e) => { setIsCapcha(false) }}
+                                    onExpired={(ex) => { setIsCapcha(false) }}
+                                />
+                            </div>
                             {isLoading === false ?
                                 <div className='btn-submit' onClick={async () => {
                                     handleSubmit();
@@ -161,11 +215,12 @@ const FormRegister = () => {
                             }
 
 
+
                             <div className='forward-login'>
                                 Bạn đã có tài khoản?
                                 <Link to={'/account/login'}>Đăng nhập</Link>
                             </div>
-
+                            <a id='forward' hidden={true} href={`${process.env.REACT_APP_BACKEND_URL}/account`}>.</a>
                         </div> :
                         <div className='FormRegister-form modal'>
                             <div className='modal-wrap'>
@@ -202,7 +257,7 @@ const FormRegister = () => {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 export default FormRegister;

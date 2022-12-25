@@ -18,7 +18,7 @@ const SliderImageHome = () => {
         speed: 500,
         lazyLoad: 'ondemand',
         autoplay: true,
-        autoplaySpeed: 4000,
+        autoplaySpeed: 5000,
     };
 
     return (

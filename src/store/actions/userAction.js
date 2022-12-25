@@ -23,10 +23,15 @@ const getLogin = async (tokens, dispatch) => {
 
     //call api
     let res = await GetUserLogin(tokens.accessToken);
-    console.log('check res: ', res);
     if (res && res.errCode === 0) {
         dispatch({
-            type: actionTypes.UPDATE_CURRENT_USER,
+            type: actionTypes.GET_LOGIN_SUCCESS,
+            data: res.data
+        })
+    }
+    else {
+        dispatch({
+            type: actionTypes.GET_LOGIN_FAILD,
             data: res.data
         })
     }
@@ -66,8 +71,15 @@ const handleRefreshToken = async (tokens, dispatch) => {
     }
 }
 
+const userLogout = (dispatch) => {
+    dispatch({
+        type: actionTypes.USER_LOGOUT
+    })
+}
+
 export {
     updateTokensSuccess,
     updateTokensFaild,
-    getLogin
+    getLogin,
+    userLogout
 }

@@ -1,27 +1,29 @@
 .slider-image-container {
-    margin-top: 10px;
+    margin-top: 16px;
 
     .slider-image-content {
         display: flex;
-        gap: 10px;
+        gap: 20px;
         justify-content: center;
         padding: 0px 10px;
-        background-color: rgba(255, 255, 255, .2);
+        // background-color: rgba(255, 255, 255, .2);
         padding: 10px 10px 4px 10px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        // border: 1px solid rgba(255, 255, 255, 0.18);
 
 
         .slider-image-left {
             width: 20%;
             background-image: url('../../../assets/image/home/slider-image-1.webp');
             background-size: cover;
-            margin-bottom: 6px;
+            margin-bottom: 3px;
+            border-radius: 4px;
         }
 
         .slider-image-right {
             width: 80%;
             display: flex;
             flex-direction: column;
+            gap: 10px;
 
             .top {
                 display: flex;
@@ -30,6 +32,7 @@
                 height: 40px;
                 background-color: var(--background-white);
                 padding: 0px 10px;
+                border-radius: 4px;
 
                 .item {
                     display: flex;
@@ -64,12 +67,14 @@
                 flex: 1;
                 display: flex;
                 flex-wrap: wrap;
-                gap: 10px;
+                gap: 20px;
                 padding-top: 10px;
 
                 .bottom-left {
-                    width: calc(70% - 10px);
+                    width: calc(70% - 20px);
                     position: relative;
+                    border-radius: 4px;
+                    overflow: hidden;
 
                     .slider-item {
 
@@ -101,7 +106,7 @@
 
                 .bottom-right {
                     width: 30%;
-                    margin-bottom: 7px;
+                    margin-bottom: 4px;
 
                     .pc {
                         height: 100%;
@@ -112,6 +117,7 @@
                         .pc-img {
                             height: 33.3333%;
                             background-size: cover;
+                            border-radius: 4px;
 
                             &.img-1 {
                                 background-image: url('../../../assets/image/home/slider-image-slide-4.webp');

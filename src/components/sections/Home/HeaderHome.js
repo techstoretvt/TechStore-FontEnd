@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import { getLogin } from '../../../store/actions/userAction'
@@ -7,33 +7,37 @@ import './HeaderHome.scss'
 import { useDispatch, useSelector } from "react-redux";
 
 const HeaderHome = (props) => {
-    const [scrollY, setScrollY] = useState(0);
     const [IsShowHeader, setIsShowHeader] = useState(false)
+
+    let preScrollY = useRef(window.scrollY);
 
     const dispatch = useDispatch();
     const accessToken = useSelector(state => state.user.accessToken)
     const refreshToken = useSelector(state => state.user.refreshToken)
 
-
+    //effect scoll header
     useEffect(() => {
-        document.addEventListener('scroll', () => {
-            var vitri = window.scrollY
+        document.addEventListener('scroll', handleScroll)
+    }, [])
 
-            if (vitri < 450) {
+    const handleScroll = () => {
+        var vitri = window.scrollY
+
+        if (vitri < 450) {
+            setIsShowHeader(false);
+        }
+        else {
+            if (vitri >= preScrollY.current) {
                 setIsShowHeader(false);
             }
             else {
-                if (vitri > scrollY) {
-                    setIsShowHeader(false);
-                }
-                else {
-                    setIsShowHeader(true);
-                }
+                setIsShowHeader(true);
             }
-            setScrollY(vitri)
-        })
-    }, [scrollY])
+        }
+        preScrollY.current = vitri
+    }
 
+    //get user login
     useEffect(() => {
         if (accessToken !== null && refreshToken !== null)
             getLogin({ accessToken, refreshToken }, dispatch);

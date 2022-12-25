@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import ReactLoading from 'react-loading';
-import { Link, useNavigate } from "react-router-dom";
 import './VerifyForm.scss'
 import { verifyCreateUser } from '../../../services/userService'
 
-
+var io = require('socket.io-client');
+var socket
 
 const VerifyForm = (props) => {
     const [loading, setLoading] = useState(true);
     const [title, setTitle] = useState('')
-    const [countdown, setCountdown] = useState('')
-    const navigate = useNavigate();
+
+    //websocket
+    useEffect(() => {
+        socket = io.connect(`${process.env.REACT_APP_BACKEND_URL}`, { reconnect: true });
+
+        // Add a connect listener
+        socket.on('connect', function (socket) {
+            console.log('Connected!');
+        });
+    })
 
     useEffect(() => {
         document.title = 'Xác nhận đăng ký - TechStoreTvT'
@@ -26,35 +34,22 @@ const VerifyForm = (props) => {
         const fetchData = async () => {
             let res = await verifyCreateUser(valueVerify);
             console.log('check res:', res);
-            if (res && res.errCode !== -1 && res.errCode !== 1) {
+            if (res && res.errCode === 2) {
                 setTitle(res.errMessage);
+            }
+            else if (res && res.errCode === 0) {
+                setTitle(res.errMessage);
+
+                socket.emit('send-email-verify', `${res.keyVerify}`, 'test msg');
             }
             else {
                 setTitle('Xử lý thất bại!');
             }
             setLoading(false)
-            setCountdown(5)
         }
         fetchData()
 
     }, [])
-
-    async function fetchBusinesses() {
-        if (countdown !== '' && countdown > 0) {
-            setTimeout(() => {
-                setCountdown(countdown - 1)
-            }, 1000)
-        }
-        else if (countdown === 0) {
-            navigate("/");
-        }
-    }
-
-    useEffect(() => {
-        fetchBusinesses()
-    })
-
-
 
     return (
         <div className="VerifyForm-container">
@@ -71,11 +66,11 @@ const VerifyForm = (props) => {
                             <div className='message'>
                                 {title}
                             </div>
-                            <div className='go-home'>
+                            {/* <div className='go-home'>
                                 Bạn sẽ được chuyển đến
                                 <Link to={'/'}>Trang Chủ</Link>
-                                sau {countdown} giây
-                            </div>
+                                sau 5 giây
+                            </div> */}
                         </div>
                     </>
                 }

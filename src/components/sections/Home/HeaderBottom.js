@@ -2,10 +2,18 @@
 import { Link } from 'react-router-dom'
 import './HeaderBottom.scss'
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from '../../../store/actions/userAction';
+
 
 const HeaderBottom = () => {
     const currentUser = useSelector(state => state.user.currentUser)
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        userLogout(dispatch);
+    }
 
     return (
         <div className='header-bottom-container'>
@@ -44,10 +52,33 @@ const HeaderBottom = () => {
                         </div>
                         <div className='header-icon-separate'></div>
                         <div className='icon-account'>
-                            <Link to={'/account/login'} className="no-login">
-                                <span></span>
-                                <div className='text'>{currentUser?.firstName}</div>
-                            </Link>
+                            {
+                                (currentUser === '' || currentUser === null) &&
+                                <Link to={'/account/login'} className="no-login">
+                                    <span></span>
+                                    <div className='text'>Đăng nhập</div>
+                                </Link>
+                            }
+                            {
+                                currentUser &&
+
+                                <button className="login">
+                                    {currentUser?.avatar ?
+                                        <span style={{ backgroundImage: `url(${currentUser.avatar})` }}></span> :
+                                        <span></span>
+                                    }
+                                    <div className='text' title={currentUser?.firstName}>{currentUser?.firstName}</div>
+
+                                    <div className='login-menu'>
+                                        <Link className='menu-item' to={'/'}>Tài khoản</Link>
+                                        <Link className='menu-item' to={'/'}>Tài khoản</Link>
+                                        <Link className='menu-item' to={'/'}>Tài khoản</Link>
+                                        <Link className='menu-item' to={'/'}>Tài khoản</Link>
+                                        <div className='menu-item' onClick={() => handleLogout()}>Đăng xuất</div>
+                                    </div>
+                                </button>
+                            }
+
                         </div>
                         <div className='icon-menu'>
                             <i className="fa-solid fa-bars"></i>

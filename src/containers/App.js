@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import VerifyForm from "../components/sections/VerifyRegister/VerifyForm";
+import AdminPage from "./admin/AdminPage";
+import ProductManagement from "../components/admin/ProductManagement/ProductManagement";
 
 function App() {
 
@@ -20,10 +22,19 @@ function App() {
         <Route path={path.register} element={<RegisterPage />} />
 
 
-        <Route path={path.veryfyRegister} element={<VerifyForm />} />
 
+
+
+
+        <Route path={path.veryfyRegister} element={<VerifyForm />} />
+        {/* admin */}
+        <Route path={path.admin} >
+          <Route path={'/admin'} element={<AdminPage />} />
+          <Route path={'/admin/product'} element={<ProductManagement />} />
+        </Route>
         {/* default */}
         <Route path="*" element={<Navigate to="/" />} />
+
       </Routes>
       <ScrollToTop smooth top='400' />
     </div>

@@ -4,10 +4,10 @@
         margin: 40px 10px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 20px;
 
         .ExhibitionImage3-img {
-            width: calc(50% - 5px);
+            width: calc(50% - 10px);
             aspect-ratio: 2/1;
             background-size: cover;
             border-radius: 4px;
