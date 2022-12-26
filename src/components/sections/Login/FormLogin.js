@@ -3,10 +3,17 @@ import './FormLogin.scss'
 import { useEffect, useState } from 'react';
 import validator from 'email-validator'
 import classNames from 'classnames';
-import { UserLogin } from '../../../services/userService'
+import { UserLogin, loginGoogle, loginFacebook } from '../../../services/userService'
 import { updateTokensSuccess, updateTokensFaild } from '../../../store/actions/userAction'
 import { useDispatch } from 'react-redux';
 import LoadingOverlay from 'react-loading-overlay-ts';
+import jwt_decode from "jwt-decode";
+
+import { LoginSocialFacebook } from 'reactjs-social-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
+
+
+
 
 const FormLogin = (props) => {
     //variable
@@ -20,13 +27,44 @@ const FormLogin = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
+    async function handleCallback(response) {
+        setIsOpenLoading(true)
+        const deCode = jwt_decode(response.credential)
+        const data = {
+            firstName: deCode.given_name,
+            lastName: deCode.family_name,
+            email: deCode.email,
+            avatar: deCode.picture,
+            idGoogle: deCode.sub,
+        }
 
+        let res = await loginGoogle(data);
+
+        if (res && res.errCode === 0) {
+            updateTokensSuccess(res.data, dispatch);
+            navigate('/')
+        }
+        else if (res && res.errCode !== 0) {
+            setErrMess(res?.errMessPass)
+            setIsOpenLoading(false)
+        }
+
+    }
+
+    useEffect(() => {
+        window.google.accounts.id.initialize({
+            client_id: '1051226548375-224relhu5ls2roroco5d16ccsrc0ssn6.apps.googleusercontent.com',
+            callback: handleCallback
+        });
+
+        window.google.accounts.id.renderButton(
+            document.getElementById('google'),
+            { theme: "outine", size: 'large' }
+        )
     }, [])
 
 
     const handleSubmitLogin = async () => {
-        console.log('submit login');
 
         var check = checkValueInput();
         if (check) {
@@ -91,6 +129,29 @@ const FormLogin = (props) => {
         }
     }
 
+    const handleLoginFacebookCuccess = async (response) => {
+        setIsOpenLoading(true)
+        const data = {
+            firstName: response.data.last_name,
+            lastName: response.data.short_name,
+            idFacebook: response.data.userID,
+            avatarFacebook: response.data.picture.data.url,
+        }
+
+        console.log("data: ", data);
+
+        let res = await loginFacebook(data);
+        console.log('res', res);
+        if (res && res.errCode === 0) {
+            updateTokensSuccess(res.data, dispatch);
+            navigate('/')
+        }
+        if (res && res.errCode !== 0) {
+            setErrMess(res.errMessPass)
+            setIsOpenLoading(false)
+        }
+    }
+
     return (
         <div className='FormLogin-container'>
             <div className='FormLogin-content'>
@@ -117,7 +178,9 @@ const FormLogin = (props) => {
 
                                 </div>
                                 <div className={classNames("user-box", { errValid: !!errMessPass })}>
-                                    <input onKeyDown={(event) => handleEnter(event)} value={pass} onChange={(event) => setPass(event.target.value)} type="password" name="" required />
+                                    <input onKeyDown={(event) => handleEnter(event)} value={pass} onChange={(event) => setPass(event.target.value)} type="password" name="password" required
+                                        autoComplete='false'
+                                    />
                                     <label>Mật khẩu</label>
                                     <span>{errMessPass}</span>
                                 </div>
@@ -140,11 +203,22 @@ const FormLogin = (props) => {
                                     <div></div>
                                 </div>
 
-                                <div className='google'>
-
-
+                                <div className='wrap-btn-social'>
+                                    <div className='google' id='google'></div>
+                                    <div className='facebook'>
+                                        <LoginSocialFacebook
+                                            appId="1131387264234227"
+                                            onResolve={(response) => {
+                                                handleLoginFacebookCuccess(response)
+                                            }}
+                                            onReject={(error) => {
+                                                console.log(error);
+                                            }}
+                                        >
+                                            <FacebookLoginButton />
+                                        </LoginSocialFacebook>
+                                    </div>
                                 </div>
-
                             </form>
                         </div>
 
@@ -155,6 +229,7 @@ const FormLogin = (props) => {
 
 
             </div>
+
         </div>
     )
 }

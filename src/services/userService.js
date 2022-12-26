@@ -20,11 +20,21 @@ const GetUserLogin = (accessToken) => {
     return axios.get(`/api/get-user-login?accessToken=${accessToken}`)
 }
 
+const loginGoogle = (data) => {
+    return axios.post('/api/login-google', data)
+}
+
+const loginFacebook = (data) => {
+    return axios.post('/api/login-facebook', data)
+}
+
 export {
     CreateUser,
     verifyCreateUser,
     UserLogin,
     refreshTokenService,
-    GetUserLogin
+    GetUserLogin,
+    loginGoogle,
+    loginFacebook
 }
 

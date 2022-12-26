@@ -41,16 +41,13 @@ const FormRegister = () => {
 
         // Add a connect listener
         socket.on('connect', function (socket) {
-            console.log('Connected!');
         });
         socket.on('disconnect', function (socket) {
-            console.log('Disconnected!');
         });
-        // socket.emit('CH01', 'me', 'test msg');
 
         return () => {
             socket.off('connect');
-            socket.off('pong');
+            socket.off('disconnect');
         }
     }, [])
 
@@ -122,7 +119,6 @@ const FormRegister = () => {
                     updateTokensSuccess(res.data, dispatch);
 
                     socket.on(`email-verify-${res.data.keyVerify}`, function (data) {
-                        console.log('emit success');
                         navigate('/')
                     })
                     setIsOpenModel(true)
@@ -153,7 +149,6 @@ const FormRegister = () => {
     }
 
     function onChangeCapcha(value) {
-        console.log("Captcha value:", value);
         setIsCapcha(true)
     }
 

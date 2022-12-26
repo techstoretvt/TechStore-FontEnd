@@ -16,7 +16,6 @@ const VerifyForm = (props) => {
 
         // Add a connect listener
         socket.on('connect', function (socket) {
-            console.log('Connected!');
         });
     })
 
@@ -33,7 +32,6 @@ const VerifyForm = (props) => {
         //call api
         const fetchData = async () => {
             let res = await verifyCreateUser(valueVerify);
-            console.log('check res:', res);
             if (res && res.errCode === 2) {
                 setTitle(res.errMessage);
             }

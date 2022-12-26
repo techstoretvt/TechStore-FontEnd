@@ -26,6 +26,8 @@
     "react-scroll-to-top": "^3.0.0",
     "react-search-autocomplete": "^8.2.1",
     "react-slick": "^0.29.0",
+    "react-social-login-buttons": "^3.6.1",
+    "reactjs-social-login": "^2.6.1",
     "reactstrap": "^9.1.5",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",

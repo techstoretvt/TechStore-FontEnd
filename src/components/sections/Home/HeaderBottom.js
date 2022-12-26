@@ -63,10 +63,23 @@ const HeaderBottom = () => {
                                 currentUser &&
 
                                 <button className="login">
-                                    {currentUser?.avatar ?
-                                        <span style={{ backgroundImage: `url(${currentUser.avatar})` }}></span> :
-                                        <span></span>
+                                    {currentUser?.typeAccount === 'google' &&
+                                        <span style={{ backgroundImage: `url(${currentUser.avatarGoogle})` }}></span>
                                     }
+                                    {currentUser?.typeAccount === 'facebook' &&
+                                        <span style={{ backgroundImage: `url(${currentUser.avatarFacebook})` }}></span>
+                                    }
+                                    {currentUser?.typeAccount === 'web' && currentUser?.avatar &&
+                                        <span style={{ backgroundImage: `url(${currentUser.avatar})` }}></span>
+                                    }
+                                    {currentUser?.typeAccount === 'web' && !currentUser?.avatar &&
+                                        <span style={{ backgroundImage: `url(${currentUser.avatar})` }}></span>
+                                    }
+
+
+
+
+
                                     <div className='text' title={currentUser?.firstName}>{currentUser?.firstName}</div>
 
                                     <div className='login-menu'>

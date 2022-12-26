@@ -146,19 +146,31 @@ body {
         }
     }
 
-    .google {
+    .wrap-btn-social {
         display: flex;
-        gap: 10px;
-        color: #fff;
-        // border: 1px solid #fff;
-        padding: 10px 0px;
-        margin-top: 20px;
-        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        button {
-            width: 100%;
+        .google {
+            display: flex;
+            gap: 10px;
+            color: #fff;
+            // border: 1px solid #fff;
+            padding: 10px 0px;
+            margin-top: 20px;
+            cursor: pointer;
+
+            button {
+                width: 100%;
+            }
         }
+
+        .facebook {}
+
     }
+
+
 
 
     .redirect-to-register {
