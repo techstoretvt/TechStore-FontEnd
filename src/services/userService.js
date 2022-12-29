@@ -28,6 +28,10 @@ const loginFacebook = (data) => {
     return axios.post('/api/login-facebook', data)
 }
 
+const loginGithub = (data) => {
+    return axios.post('/api/login-github', data)
+}
+
 export {
     CreateUser,
     verifyCreateUser,
@@ -35,6 +39,7 @@ export {
     refreshTokenService,
     GetUserLogin,
     loginGoogle,
-    loginFacebook
+    loginFacebook,
+    loginGithub
 }
 

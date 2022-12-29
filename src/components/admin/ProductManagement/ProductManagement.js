@@ -1,24 +1,39 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AddTypeProduct from './AddTypeProduct'
+import AddTrademark from './AddTrademark'
 import './ProductManagement.scss'
 
 
 const ProductManagement = () => {
-    const [isOpenAddTypeProduct, setIsOpenAddTypeProduct] = useState(true)
+    const [isOpenAddTypeProduct, setIsOpenAddTypeProduct] = useState(false)
+    const [isOpenAddTrademark, setIsOpenAddTrademark] = useState(true)
 
     useEffect(() => {
-        document.title = 'Admin - TechStoreTvT'
+        document.title = 'Product - TechStoreTvT'
     }, [])
 
     const toggleAddTypeProduct = () => {
         setIsOpenAddTypeProduct(!isOpenAddTypeProduct);
     }
 
+    const toggleAddTrademark = () => {
+        setIsOpenAddTrademark(!isOpenAddTrademark)
+    }
+
 
     return (
         <>
             <div className='ProductManagement-container'>
+                <div className='header-ProductManagement'>
+                    <Link to={'/admin'} className='left'>
+                        <i className="fa-solid fa-circle-left"></i>
+                    </Link>
+                    <div className='right'>
+                        Quản lý sản phẩm
+                    </div>
+                </div>
+
                 <div className='ProductManagement-content'>
                     <Link onClick={toggleAddTypeProduct}>
                         <span></span>
@@ -27,7 +42,7 @@ const ProductManagement = () => {
                         <span></span>
                         Thêm loại sản phẩm
                     </Link>
-                    <Link to={'/admin'}>
+                    <Link onClick={toggleAddTrademark}>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -53,12 +68,16 @@ const ProductManagement = () => {
                 </div>
 
             </div>
-            {
-                <AddTypeProduct
-                    isModal={isOpenAddTypeProduct}
-                    toggle={toggleAddTypeProduct}
-                />
-            }
+
+            <AddTypeProduct
+                isModal={isOpenAddTypeProduct}
+                toggle={toggleAddTypeProduct}
+            />
+            <AddTrademark
+                isModal={isOpenAddTrademark}
+                toggle={toggleAddTrademark}
+            />
+
         </>
     )
 }

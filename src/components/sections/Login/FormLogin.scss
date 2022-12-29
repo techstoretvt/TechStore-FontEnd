@@ -149,24 +149,95 @@ body {
     .wrap-btn-social {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        width: 100%;
+        margin: 0 auto;
+
 
         .google {
             display: flex;
             gap: 10px;
             color: #fff;
-            // border: 1px solid #fff;
-            padding: 10px 0px;
+            padding: 10px 6px;
             margin-top: 20px;
             cursor: pointer;
+            width: 100%;
 
-            button {
+            .google-btn {
                 width: 100%;
+
+                button {
+                    margin: 0 !important;
+                    width: 100% !important;
+
+                    div {
+                        div:nth-child(3) {
+                            font-size: 14px;
+                            position: relative;
+                            color: transparent;
+
+                            &::after {
+                                position: absolute;
+                                inset: 0;
+                                content: 'Đăng nhập với Facebook';
+                                color: #000;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        .facebook {
+            width: 100%;
+
+            .facebook-btn {
+                button {
+                    div {
+                        div:nth-child(3) {
+                            font-size: 14px;
+                            position: relative;
+                            color: transparent;
+
+                            &::after {
+                                position: absolute;
+                                inset: 0;
+                                content: 'Đăng nhập với Facebook';
+                                color: #fff;
+
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        .facebook {}
+        .github {
+            width: 100%;
+
+            .github-btn {
+                button {
+                    div {
+                        div:nth-child(3) {
+                            font-size: 14px;
+                            position: relative;
+                            color: transparent;
+
+                            &::after {
+                                position: absolute;
+                                inset: 0;
+                                content: 'Đăng nhập với Github';
+                                color: #fff;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 

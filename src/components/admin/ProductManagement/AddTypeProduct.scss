@@ -25,3 +25,9 @@
     background-color: #04AA6D;
     color: white;
 }
+
+.wrap-input {
+    .form-control.err {
+        border-color: red;
+    }
+}

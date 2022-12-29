@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import validator from 'email-validator'
@@ -31,6 +31,7 @@ const FormRegister = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isOpenModal, setIsOpenModel] = useState(false);
     const [isCapcha, setIsCapcha] = useState(null);
+    let isStartLogin = useRef(false);
 
     const [errMess, setErrMess] = useState('');
     const [isEmptyInput, setIsEmptyInput] = useState([false, false, false, false, false])
@@ -114,27 +115,36 @@ const FormRegister = () => {
                     pass: password
                 }
 
-                let res = await CreateUser(data);
-                if (res && res.errCode === 0) {
-                    updateTokensSuccess(res.data, dispatch);
+                if (!isStartLogin) {
+                    isStartLogin = true;
 
-                    socket.on(`email-verify-${res.data.keyVerify}`, function (data) {
-                        navigate('/')
-                    })
-                    setIsOpenModel(true)
+                    let res = await CreateUser(data);
+                    if (res && res.errCode === 0) {
+                        updateTokensSuccess(res.data, dispatch);
+
+                        socket.on(`email-verify-${res.data.keyVerify}`, function (data) {
+                            navigate('/')
+                        })
+                        setIsOpenModel(true)
+
+                    }
+
+                    else if (res && res.errCode === 2) {
+                        updateTokensFaild(dispatch)
+                        errmess = 'Tài khoản đã tồn tại!'
+                        isStartLogin = false;
+                    }
+
+                    else {
+                        //Các trường hợp còn lại
+                        updateTokensFaild(dispatch)
+                        errmess = 'Đã có lỗi xảy ra, vui lòng thử lại sau!'
+                        isStartLogin = false;
+                    }
 
                 }
 
-                else if (res && res.errCode === 2) {
-                    updateTokensFaild(dispatch)
-                    errmess = 'Tài khoản đã tồn tại!'
-                }
 
-                else {
-                    //Các trường hợp còn lại
-                    updateTokensFaild(dispatch)
-                    errmess = 'Đã có lỗi xảy ra, vui lòng thử lại sau!'
-                }
             }
             setErrMess(errmess)
             setIsEmptyInput(copyArr)
@@ -144,6 +154,7 @@ const FormRegister = () => {
 
     const handleEnter = (event) => {
         if (event.keyCode === 13) {
+            event.target.blur();
             handleSubmit();
         }
     }

@@ -3,17 +3,21 @@ import './FormLogin.scss'
 import { useEffect, useState } from 'react';
 import validator from 'email-validator'
 import classNames from 'classnames';
-import { UserLogin, loginGoogle, loginFacebook } from '../../../services/userService'
+import { UserLogin, loginGoogle, loginFacebook, loginGithub } from '../../../services/userService'
 import { updateTokensSuccess, updateTokensFaild } from '../../../store/actions/userAction'
 import { useDispatch } from 'react-redux';
 import LoadingOverlay from 'react-loading-overlay-ts';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
-import { LoginSocialFacebook } from 'reactjs-social-login';
-import { FacebookLoginButton } from 'react-social-login-buttons';
+import { LoginSocialFacebook, LoginSocialGithub, LoginSocialGoogle } from 'reactjs-social-login';
+import { FacebookLoginButton, GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 
 
-
+const client_id_gg = '1051226548375-224relhu5ls2roroco5d16ccsrc0ssn6.apps.googleusercontent.com'
+const appid_face = '1131387264234227'
+const client_id_git = '09a0f9c783583c608447'
+const client_secret_git = '03c0485c0bb0a5094f7891f5ced2962d31776b0d'
+const redirect_uri_git = 'http://localhost:3000/account/login'
 
 const FormLogin = (props) => {
     //variable
@@ -27,17 +31,17 @@ const FormLogin = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    async function handleCallback(response) {
-        setIsOpenLoading(true)
-        const deCode = jwt_decode(response.credential)
-        const data = {
-            firstName: deCode.given_name,
-            lastName: deCode.family_name,
-            email: deCode.email,
-            avatar: deCode.picture,
-            idGoogle: deCode.sub,
-        }
 
+    //google
+    async function handleLoginGoogleSuccess(response) {
+        setIsOpenLoading(true)
+        const data = {
+            firstName: response.data.given_name,
+            lastName: response.data.family_name,
+            email: response.data.email,
+            avatar: response.data.picture,
+            idGoogle: response.data.sub,
+        }
         let res = await loginGoogle(data);
 
         if (res && res.errCode === 0) {
@@ -45,22 +49,15 @@ const FormLogin = (props) => {
             navigate('/')
         }
         else if (res && res.errCode !== 0) {
-            setErrMess(res?.errMessPass)
+            setErrMess(res?.errMessage)
             setIsOpenLoading(false)
         }
 
     }
 
-    useEffect(() => {
-        window.google.accounts.id.initialize({
-            client_id: '1051226548375-224relhu5ls2roroco5d16ccsrc0ssn6.apps.googleusercontent.com',
-            callback: handleCallback
-        });
 
-        window.google.accounts.id.renderButton(
-            document.getElementById('google'),
-            { theme: "outine", size: 'large' }
-        )
+    useEffect(() => {
+
     }, [])
 
 
@@ -130,26 +127,44 @@ const FormLogin = (props) => {
     }
 
     const handleLoginFacebookCuccess = async (response) => {
-        setIsOpenLoading(true)
         const data = {
             firstName: response.data.last_name,
             lastName: response.data.short_name,
             idFacebook: response.data.userID,
             avatarFacebook: response.data.picture.data.url,
         }
-
-        console.log("data: ", data);
-
         let res = await loginFacebook(data);
-        console.log('res', res);
         if (res && res.errCode === 0) {
             updateTokensSuccess(res.data, dispatch);
             navigate('/')
         }
         if (res && res.errCode !== 0) {
-            setErrMess(res.errMessPass)
+            setErrMess(res.errMessage)
             setIsOpenLoading(false)
         }
+    }
+
+    const handleLoginGithubCuccess = async (response) => {
+        console.log('response: ', response);
+
+        const data = {
+            firstName: response.data.login,
+            avatarGithub: response.data.avatar_url,
+            idGithub: response.data.id,
+        }
+        console.log('data: ', data);
+
+        // return;
+        let res = await loginGithub(data);
+        if (res && res.errCode === 0) {
+            updateTokensSuccess(res.data, dispatch);
+            navigate('/')
+        }
+        if (res && res.errCode !== 0) {
+            setErrMess(res.errMessage)
+            setIsOpenLoading(false)
+        }
+
     }
 
     return (
@@ -171,14 +186,14 @@ const FormLogin = (props) => {
                                     <a href={'/account/register'}>Đăng ký</a>
                                 </div>
                                 <div className={classNames("user-box", { errValid: !!errMessEmail })}>
-                                    <input onKeyDown={(event) => handleEnter(event)} value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="" required />
+                                    <input onKeyDown={(event) => { setErrMessEmail(''); handleEnter(event) }} value={email} onChange={(event) => setEmail(event.target.value)} type="text" name="" required />
                                     <label>Email</label>
                                     <span>{errMessEmail}</span>
 
 
                                 </div>
                                 <div className={classNames("user-box", { errValid: !!errMessPass })}>
-                                    <input onKeyDown={(event) => handleEnter(event)} value={pass} onChange={(event) => setPass(event.target.value)} type="password" name="password" required
+                                    <input onKeyDown={(event) => { setErrMessPass(''); handleEnter(event) }} value={pass} onChange={(event) => setPass(event.target.value)} type="password" name="password" required
                                         autoComplete='false'
                                     />
                                     <label>Mật khẩu</label>
@@ -204,10 +219,28 @@ const FormLogin = (props) => {
                                 </div>
 
                                 <div className='wrap-btn-social'>
-                                    <div className='google' id='google'></div>
+                                    <div className='google' id='google'>
+                                        <LoginSocialGoogle
+                                            className='google-btn'
+                                            client_id={client_id_gg}
+                                            onResolve={(response) => {
+                                                handleLoginGoogleSuccess(response)
+                                            }}
+                                            onReject={err => {
+                                                console.log(err);
+                                                setIsOpenLoading(false)
+                                            }}
+                                        >
+                                            <GoogleLoginButton />
+                                        </LoginSocialGoogle>
+                                    </div>
                                     <div className='facebook'>
                                         <LoginSocialFacebook
-                                            appId="1131387264234227"
+                                            appId={appid_face}
+                                            className="facebook-btn"
+                                            onLoginStart={() => {
+                                                setIsOpenLoading(true)
+                                            }}
                                             onResolve={(response) => {
                                                 handleLoginFacebookCuccess(response)
                                             }}
@@ -217,6 +250,25 @@ const FormLogin = (props) => {
                                         >
                                             <FacebookLoginButton />
                                         </LoginSocialFacebook>
+                                    </div>
+                                    <div className='github'>
+                                        <LoginSocialGithub
+                                            client_id={client_id_git}
+                                            client_secret={client_secret_git}
+                                            redirect_uri={redirect_uri_git}
+                                            className='github-btn'
+                                            onLoginStart={() => {
+                                                setIsOpenLoading(true)
+                                            }}
+                                            onResolve={(response) => {
+                                                handleLoginGithubCuccess(response)
+                                            }}
+                                            onReject={(err) => {
+                                                console.log("err", err);
+                                            }}
+                                        >
+                                            <GithubLoginButton />
+                                        </LoginSocialGithub>
                                     </div>
                                 </div>
                             </form>

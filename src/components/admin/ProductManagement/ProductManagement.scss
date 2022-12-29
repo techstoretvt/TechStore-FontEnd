@@ -1,4 +1,31 @@
 .ProductManagement-container {
+    .header-ProductManagement {
+        display: flex;
+        align-items: center;
+
+        .left {
+            margin-left: 20px;
+
+            i {
+                color: #fff;
+                font-size: 30px;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: .8;
+                }
+            }
+        }
+
+        .right {
+            flex: 1;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+    }
+
     .ProductManagement-content {
         display: flex;
         flex-wrap: wrap;

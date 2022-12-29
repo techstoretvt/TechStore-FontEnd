@@ -69,6 +69,9 @@ const HeaderBottom = () => {
                                     {currentUser?.typeAccount === 'facebook' &&
                                         <span style={{ backgroundImage: `url(${currentUser.avatarFacebook})` }}></span>
                                     }
+                                    {currentUser?.typeAccount === 'github' && currentUser?.avatar &&
+                                        <span style={{ backgroundImage: `url(${currentUser.avatarGithub})` }}></span>
+                                    }
                                     {currentUser?.typeAccount === 'web' && currentUser?.avatar &&
                                         <span style={{ backgroundImage: `url(${currentUser.avatar})` }}></span>
                                     }
