@@ -1,4 +1,7 @@
-Link: https://vocal-piroshki-f2db56.netlify.app
+Link front end: https://techstoretvt.vercel.app
+Link Admin: https://techstoretvtadmin.vercel.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
